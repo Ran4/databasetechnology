@@ -14,4 +14,8 @@ WHERE  stock.isbn=SFBOOKS.isbn;
 FROM books, subjects, editions
 WHERE subjects.subject='Science Fiction'
     AND books.subject_id=subjects.subject_id
-    AND  editions.book_id=books.book_id;*/
+    AND  editions.book_id=books.book_id;*/  sum   
+--------
+ 137.80
+(1 row)
+
