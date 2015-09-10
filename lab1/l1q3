@@ -1,14 +1,4 @@
 -- l1q3 Who bought books about "horror"?
-/*SELECT last_name, first_name 
-FROM customers, shipments
-WHERE shipments IN (SELECT subject
-                 FROM   subjects, books
-                 WHERE subject='Horror' 
-                    AND subjects.subject_id=books.subject_id)
-    AND customers.customer_id=shipments.customer_id;
-    */
-    
-    
 
 SELECT last_name,first_name
 FROM  ( SELECT last_name,first_name,book_id -- alla kunder som köpt någon bok.    
