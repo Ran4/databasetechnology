@@ -1,0 +1,6 @@
+books((book_id), title, author_id, subject_id) 
+publishers((publisher_id), name, address)authors((author_id), last_name, first_name)stock((isbn), cost, retail_price, stock) 
+shipments((shipment_id), customer_id, isbn, ship_date) 
+customers((customer_id), last_name, first_name) 
+editions((isbn), book_id, edition, publisher_id, publication_date) 
+subjects((subject_id), subject, location)

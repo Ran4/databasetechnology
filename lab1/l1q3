@@ -1,0 +1,23 @@
+-- l1q3 Who bought books about "horror"?
+/*SELECT last_name, first_name 
+FROM customers, shipments
+WHERE shipments IN (SELECT subject
+                 FROM   subjects, books
+                 WHERE subject='Horror' 
+                    AND subjects.subject_id=books.subject_id)
+    AND customers.customer_id=shipments.customer_id;
+    */
+    
+    
+
+SELECT last_name,first_name
+FROM  ( SELECT last_name,first_name,book_id -- alla kunder som köpt någon bok.    
+        FROM editions, shipments, customers 
+        WHERE editions.isbn=shipments.isbn 
+        AND customers.customer_id=shipments.customer_id)BookBuyer ,
+             
+             (SELECT book_id,title -- alla horror-böcker
+             FROM books, subjects
+             WHERE subject='Horror'
+             AND subjects.subject_id=books.subject_id)HorrorBook
+WHERE BookBuyer.book_id=HorrorBook.book_id;
