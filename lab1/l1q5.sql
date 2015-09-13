@@ -9,13 +9,9 @@ FROM stock, (SELECT title, isbn -- Science Fiction Books, all versions.
                         AND  editions.book_id=books.book_id)SFBOOKS
 WHERE  stock.isbn=SFBOOKS.isbn;
 
-
-/*SELECT title, isbn -- Science Fiction Books, all versions.
-FROM books, subjects, editions
-WHERE subjects.subject='Science Fiction'
-    AND books.subject_id=subjects.subject_id
-    AND  editions.book_id=books.book_id;*/  sum   
+/*
+sum   
 --------
  137.80
 (1 row)
-
+*/
