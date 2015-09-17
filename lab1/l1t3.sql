@@ -3,9 +3,11 @@
 Your task here is to write a trigger that functions so that whenever a new shipment is recorded the stock is automatically decreased to reflect the shipment. If the current stock=0 then the insertion should not happen and an ‘EXCEPTION’ raised with some message such as ‘There is no stock to ship’.
 */
 DROP FUNCTION decstock() CASCADE;
-CREATE FUNCTION decstock() RETURNS trigger AS $pname$      BEGIN            IF NEW.stock=0 --=SOME SQL QUERY, kolla i stock, men i shipments                 THEN RAISE EXCEPTION 'There is no stock to ship'                    ELSE                        NEW.stock=NEW.stock-1;            END IF;      END;$pname$ LANGUAGE plpgsql;
+CREATE FUNCTION decstock() RETURNS trigger AS $pname$      BEGIN            IF (SELECT stock FROM stock WHERE  NEW.isbn=shipments.isbn)=0 --=SOME SQL QUERY, kolla i stock, men i shipments                 THEN RAISE EXCEPTION 'There is no stock to ship'                    ELSE                        UPDATE stock
+                        SET stock = stock-1
+                        WHERE stock.isbn=NEW.isbn;            END IF;      END;$pname$ LANGUAGE plpgsql;
 CREATE TRIGGER
-AFTER UPDATE ON shipments      ... (state the triggering condition as in described inbook 7.5.1)      FOR EACH ROW             EXECUTE PROCEDURE decstock();
+BEFORE INSERT ON shipments      FOR EACH ROW             EXECUTE PROCEDURE decstock();
 
 
 
