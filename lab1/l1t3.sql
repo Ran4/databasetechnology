@@ -1,29 +1,41 @@
 --l1t3
-/*
-Your task here is to write a trigger that functions so that whenever a new shipment is recorded the stock is automatically decreased to reflect the shipment. If the current stock=0 then the insertion should not happen and an ‘EXCEPTION’ raised with some message such as ‘There is no stock to ship’.  */
-DROP FUNCTION decstock() CASCADE;
-CREATE FUNCTION decstock() RETURNS trigger AS $pname$
+/* Your task here is to write a trigger that functions so that whenever a new
+shipment is recorded the stock is automatically decreased to reflect the shipment.
+
+If the current stock=0 then the insertion should not happen and an ‘EXCEPTION’
+should be raised with some message such as ‘There is no stock to ship’.
+*/
+DROP FUNCTION IF EXISTS decstock() CASCADE;
+CREATE FUNCTION decstock() RETURNS TRIGGER AS $pname$
     BEGIN
-        IF (SELECT stock FROM stock WHERE  NEW.isbn=shipments.isbn) = 0 --=SOME SQL QUERY, kolla i stock, men i shipments
-            THEN RAISE EXCEPTION 'There is no stock to ship'
+        /*BEGIN
+                RAISE EXCEPTION 'test';
+        END;*/
+        IF (SELECT stock FROM stock WHERE NEW.isbn=shipments.isbn) = 0 --=SOME SQL QUERY, kolla i stock, men i shipments
+            THEN RAISE EXCEPTION 'There is no stock to ship';
         ELSE
             UPDATE stock
                         SET stock = stock-1
                         WHERE stock.isbn=NEW.isbn;
         END IF;
+        RETURN NEW;
     END;
 
 $pname$ LANGUAGE plpgsql;
-CREATE TRIGGER
+CREATE TRIGGER decstocktrigger
 BEFORE INSERT ON shipments --Triggering condition
 FOR EACH ROW
     EXECUTE PROCEDURE decstock();
 
+
+INSERT INTO shipments VALUES(2000, 860, '0394900014', '2012-12-07');
+
 /*
+
 SELECT * FROM stock;
 --Output: the whole table before making shipments.
 
-INSERT INTO shipmentsVALUES(2000, 860, '0394900014', '2012-12-07');
+INSERT INTO shipments VALUES(2000, 860, '0394900014', '2012-12-07');
 --Since this book is not in stock, this should give: Output: ERROR: There is no stock to ship
 
 INSERT INTO shipments VALUES(2001, 860, '044100590X', '2012-12-07');
