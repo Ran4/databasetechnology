@@ -22,8 +22,8 @@ FROM --Vi borde använda två views här istället
         GROUP BY name) B
 WHERE A.name=B.name
 GROUP BY A.name
-ORDER BY SUM(A.sold+B.sold) DESC
-LIMIT 1
+ORDER BY SUM(A.sold+B.sold) DESC 
+LIMIT 1 --Alternativ att använda MAX, vilket hade gett alla resultat, om det hade funnits flera med samma max.
 ;
 
 /*Answer: Ace Books, 4566.00*/

@@ -10,3 +10,4 @@ SELECT * FROM isbn_title;
 
 DROP VIEW isbn_title;
 -- It is nice to have since the title and ISBN are not present in the same relation, giving a possibility to access them directly instead on incorporating two separate realtions.
+-- Can also make changes in a view to test and see how it works/behaves, without altering with the background database.
