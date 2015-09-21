@@ -1,4 +1,6 @@
---l1t2q9 
+--l1t2q9 Create a constraint, called ‘hasSubject’ that forces the subject_id to not be NULL and to match one in the subjects table. (HINT you might want to look at chap. 6.1.6 on testing NULL). Show that you can still insert an book with no author_id but not without a subject_id. Now remove the new constraint and any added books.
+
+
 ALTER TABLE books
 ADD CONSTRAINT hasSubject
 CHECK (subject_id IS NOT NULL)
