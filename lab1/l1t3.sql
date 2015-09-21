@@ -9,8 +9,8 @@ DROP FUNCTION IF EXISTS decstock() CASCADE;
 CREATE FUNCTION decstock() RETURNS TRIGGER AS $pname$
     BEGIN
         IF (
-            SELECT stock 
-            FROM stock 
+            SELECT stock
+            FROM stock
             WHERE NEW.isbn=stock.isbn) = 0
                 THEN RAISE EXCEPTION 'There is no stock to ship';
         ELSE

@@ -10,7 +10,7 @@ INSERT INTO books --Test case with subject_id but no author
 VALUES (5432,'Test without author but with subject_id',NULL,10);
 
 INSERT INTO books -- Test case without both author and subject, should fail due to constraint above
-VALUES(6543,'Test without subject_id, should fail',NULL,Null);
+VALUES(6543,'Test without subject_id, should fail',NULL,NULL);
 
 /* Output:
 INSERT 0 1

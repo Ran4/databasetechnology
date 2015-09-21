@@ -1,9 +1,5 @@
 #!/usr/bin/python
 
-# Lines that start as this one does are comments and have no effect on
-# the execution of the program.  (Most added by John Folkesson to help
-# understand the code.)
-
 # When you import the pgdb  module, all the
 # classes and functions in that module become available for you to
 # use.  For example you can now use the pgdb.connect() function to
