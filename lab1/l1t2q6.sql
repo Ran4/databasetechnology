@@ -1,4 +1,4 @@
---l1t2q6
+--l1t2q6 Try to delete the new tuple from books. Explain what happens.
 DELETE FROM books
 WHERE book_id=12345;
 

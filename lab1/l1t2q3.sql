@@ -1,4 +1,4 @@
---l1t2q3
+--l1t2q3 Try  to  insert  into  editions a  new  tuple  only  setting  its  isbn='5555'. Explain  what happened
 INSERT INTO editions (isbn)
 VALUES ('5555');
 

@@ -1,4 +1,4 @@
--- l1t2q2 -- "+p
+-- l1t2q2 -- Try  to  insert  into  editions a  new  tuple  ('5555', 12345,  1,59, '2012-12-02').   Explain what happened.
 INSERT INTO editions
 VALUES ('5555', 12345, 1,59, '2012-12-02');
 /* Output:
