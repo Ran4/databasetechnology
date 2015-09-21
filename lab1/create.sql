@@ -4,7 +4,7 @@ CREATE TABLE "publishers" (
 	"publisher_id" integer NOT NULL,
 	"name" text,
 	"address" text,
-	Constraint "publishers_pkey" Primary Key ("publisher_id")
+	CONSTRAINT "publishers_pkey" Primary Key ("publisher_id")
 );
 
 DROP TABLE IF EXISTS "authors" CASCADE;
@@ -12,7 +12,7 @@ CREATE TABLE "authors" (
 	"author_id" integer NOT NULL,
 	"last_name" text,
 	"first_name" text,
-	Constraint "authors_pkey" Primary Key ("author_id")
+	CONSTRAINT "authors_pkey" Primary Key ("author_id")
 );
 
 DROP TABLE IF EXISTS "stock" CASCADE;
@@ -21,7 +21,7 @@ CREATE TABLE "stock" (
 	"cost" numeric(5,2),
 	"retail_price" numeric(5,2),
 	"stock" integer,
-	Constraint "stock_pkey" Primary Key ("isbn")
+	CONSTRAINT "stock_pkey" Primary Key ("isbn")
 );
 
 DROP TABLE IF EXISTS "customers" CASCADE;
@@ -29,7 +29,7 @@ CREATE TABLE "customers" (
 	"customer_id" integer NOT NULL,
 	"last_name" text,
 	"first_name" text,
-	Constraint "customers_pkey" Primary Key ("customer_id")
+	CONSTRAINT "customers_pkey" Primary Key ("customer_id")
 );
 
 DROP TABLE IF EXISTS "subjects" CASCADE;
@@ -37,7 +37,7 @@ CREATE TABLE "subjects" (
 	"subject_id" integer NOT NULL,
 	"subject" text,
 	"location" text,
-	Constraint "subjects_pkey" Primary Key ("subject_id")
+	CONSTRAINT "subjects_pkey" Primary Key ("subject_id")
 );
 
 DROP TABLE IF EXISTS "books" CASCADE;
@@ -46,7 +46,7 @@ CREATE TABLE "books" (
 	"title" text NOT NULL,
 	"author_id" integer references authors(author_id),
 	"subject_id" integer references subjects(subject_id),
-	Constraint "books_id_pkey" Primary Key ("book_id")
+	CONSTRAINT "books_id_pkey" Primary Key ("book_id")
 );
 
 DROP TABLE IF EXISTS "editions" CASCADE;
@@ -57,7 +57,7 @@ CREATE TABLE "editions" (
 	"publisher_id" integer,
 	"publication_date" date,
 	CONSTRAINT "integrity" CHECK (((book_id NOTNULL) AND (edition NOTNULL))),
-	Constraint "pkey" Primary Key ("isbn")
+	CONSTRAINT "pkey" Primary Key ("isbn")
 );
 
 
