@@ -1,10 +1,12 @@
---l1q10 
+--l1q10 Which subjects have not sold any books?
 /*
-10. Which subjects have not sold any books?Answer: 
+Answer:
 Mystery
 Business
-ReligionCooking
-PoetryHistory
+Religion
+Cooking
+Poetry
+History
 Romance
 Entertainment
 Science
@@ -20,7 +22,7 @@ WHERE subject NOT in (SELECT subject
 ;
 
 /*
-    subject    
+    subject
 ---------------
  Business
  Cooking

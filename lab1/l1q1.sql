@@ -1,3 +1,4 @@
+--l1q1 Who wrote "The Shining"?
 SELECT last_name, first_name 
 FROM authors, books 
 WHERE books.author_id=authors.author_id AND title = 'The Shining';

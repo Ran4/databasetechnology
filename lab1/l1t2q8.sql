@@ -1,5 +1,4 @@
---l1t2q8 Now insert a book with (isbn, title, subject_id ) of (12345, 'How I Insert', 3443).-- Explain what happened.
-
+--l1t2q8 Now insert a book with (isbn, title, subject_id ) of (12345, 'How I Insert', 3443). -- Explain what happened.
 INSERT INTO books (book_id, title, subject_id)
 VALUES (12345, 'How I Insert', 3443);
 

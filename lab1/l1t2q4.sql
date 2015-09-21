@@ -1,5 +1,4 @@
 --l1t2q4
-
 INSERT INTO books
 VALUES (12345,'How I Insert');
 

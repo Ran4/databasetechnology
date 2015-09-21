@@ -1,5 +1,4 @@
 -- l1q3 Who bought books about "horror"?
-
 SELECT last_name,first_name
 FROM  ( SELECT last_name,first_name,book_id -- alla kunder som köpt någon bok.    
         FROM editions, shipments, customers 

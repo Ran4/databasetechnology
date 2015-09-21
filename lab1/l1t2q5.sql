@@ -1,5 +1,4 @@
 --l1t2q5
-
 UPDATE books
 SET subject_id= (SELECT subject_id 
                 FROM subjects

@@ -1,7 +1,6 @@
--- l1q9
-
+-- l1q9 Which customers have bought books about at least three different subjects?
 /*
-9. Which customers have bought books about at least three different subjects?Answer: Jackson, Annie
+Answer: Jackson, Annie
 */
 
 SELECT last_name, first_name
@@ -14,7 +13,7 @@ GROUP BY last_name, first_name
 HAVING COUNT(subjects.subject) >=3;
 
 /*
-last_name | first_name 
+last_name | first_name
 -----------+------------
  Jackson   | Annie
 (1 row)

@@ -1,0 +1,765 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+imap <S-Tab> <Plug>SuperTabBackward
+inoremap <C-Tab> 	
+nnoremap  
+nnoremap <NL> <NL>
+nnoremap  
+nnoremap  
+nnoremap   :w
+vnoremap ' `
+nnoremap ' `
+nnoremap + 
+nnoremap ,, ,
+nmap , ä
+nnoremap - 
+nnoremap 0 ^
+vnoremap < <gv
+vnoremap > >gv
+cnoremap ö /
+nnoremap E $
+nnoremap K :call BreakHere()
+nnoremap O O."_x
+nnoremap Q qq
+xmap S <Plug>VSurround
+xmap X <Plug>(Exchange)
+nnoremap Y y$
+vnoremap ` '
+nnoremap ` '
+nmap cS <Plug>CSurround
+nmap cs <Plug>Csurround
+nmap cxx <Plug>(ExchangeLine)
+nmap cxc <Plug>(ExchangeClear)
+nmap cx <Plug>(Exchange)
+nnoremap cis :call New_cisqb()
+nnoremap ci} :call New_cisqb()
+nnoremap ci{ :call New_cisqb()
+nnoremap ci] :call New_cisb()
+nnoremap ci[ :call New_cisb()
+nnoremap cip :call New_cip()
+nnoremap ci( :call New_cip()
+nmap ds <Plug>Dsurround
+nnoremap d0 d^
+nnoremap dö d/
+nmap gx <Plug>NetrwBrowseX
+xmap gS <Plug>VgSurround
+nnoremap j gj
+nnoremap k gk
+nnoremap o o."_x
+nmap ySS <Plug>YSsurround
+nmap ySs <Plug>YSsurround
+nmap yss <Plug>Yssurround
+nmap yS <Plug>YSurround
+nmap ys <Plug>Ysurround
+nnoremap y0 y^
+vnoremap zB zb4
+vnoremap zT zt4
+nnoremap zB zb4
+nnoremap zT zt4
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
+nnoremap <silent> <Plug>SurroundRepeat .
+nnoremap <F5> :!clear && make && echo "    //// Output ////" && ./%:r.out
+imap S <Plug>ISurround
+imap s <Plug>Isurround
+imap 	 <Plug>SuperTabForward
+imap  <Plug>Isurround
+nmap äl :highlight ExtraWhitespace ctermbg=red:match ExtraWhiteSpace /\S\(\s\+\)$/
+nnoremap ë :vert resize 80
+nnoremap ü ik$
+vnoremap ö /
+nnoremap ö /
+nnoremap är :vert resize 80
+nnoremap äW :wincmd W
+nnoremap äw :wincmd w
+vnoremap äs :s//g<Left><Left>
+nnoremap äs :%s//gc<Left><Left><Left>
+nnoremap äQ kx
+nnoremap äq I#j
+nnoremap äp :!clear && python %
+nnoremap än :set number!
+nnoremap ä: "xy:x<BS>
+nnoremap äEV :split $MYVIMRC
+nnoremap äEv :split $MYVIMRC
+nnoremap äev :vert split $MYVIMRC
+nnoremap äa) f)i
+nnoremap äa' f';i
+nnoremap äa" f";i
+nnoremap ä) viwa)hbi(%
+nnoremap ä( viwa)hbi(%
+nnoremap ä] viwa]hbi[%
+nnoremap ä[ viwa]hbi[%
+vnoremap ä' `>a'`<i'
+vnoremap ä" `>a"`<i"
+nnoremap ä' viwa'hbi'lel
+nnoremap ä" viwa"hbi"lel
+nnoremap ŕ :source .vimsession
+nnoremap ẃ :mksession! .vimsession
+imap jk 
+inoremap zB zb4i
+inoremap zT zt4i
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set backspace=indent,eol,start
+set expandtab
+set fileencodings=ucs-bom,utf-8,default,latin1
+set helplang=en
+set history=50
+set ignorecase
+set incsearch
+set listchars=tab:▸\ ,eol:¬
+set nomodeline
+set mouse=n
+set printoptions=paper:a4
+set ruler
+set runtimepath=~/.vim,~/.vim/bundle/colorschemes,~/.vim/bundle/nerdtree,~/.vim/bundle/supertab,~/.vim/bundle/syntastic,~/.vim/bundle/targets.vim,~/.vim/bundle/vim-exchange,~/.vim/bundle/vim-surround,~/.vim/bundle/vim-tbone,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after,~/.fzf
+set splitbelow
+set splitright
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+set timeoutlen=2500
+set ttimeoutlen=10
+set wildmode=longest,list,full
+set window=54
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/git/databasetechnology/lab1
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +1 l1q1.sql
+badd +1 l1q2.sql
+badd +0 l1q3.sql
+badd +0 l1q4.sql
+args l1q1.sql l1q2.sql l1q3.sql l1q4.sql
+edit l1q1.sql
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 22 + 27) / 55)
+exe 'vert 1resize ' . ((&columns * 94 + 94) / 189)
+exe '2resize ' . ((&lines * 30 + 27) / 55)
+exe 'vert 2resize ' . ((&columns * 94 + 94) / 189)
+exe '3resize ' . ((&lines * 22 + 27) / 55)
+exe 'vert 3resize ' . ((&columns * 94 + 94) / 189)
+exe '4resize ' . ((&lines * 30 + 27) / 55)
+exe 'vert 4resize ' . ((&columns * 94 + 94) / 189)
+argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <Left> =sqlcomplete#DrillOutOfColumns()
+inoremap <buffer> <Right> =sqlcomplete#DrillIntoTable()
+xnoremap <buffer> <silent> [" :exec "normal! gv"|call search('\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)\@!', "W" )
+nnoremap <buffer> <silent> [" :call search('\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)\@!', "W" )
+xnoremap <buffer> <silent> [{ ?\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>
+nnoremap <buffer> <silent> [{ :call search('\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>', 'bW')
+xnoremap <buffer> <silent> [] :exec "normal! gv"|call search('\c^\s*end\W*$', 'bW' )
+xnoremap <buffer> <silent> [[ :exec "normal! gv"|call search('\c^\s*begin\>', 'bW' )
+nnoremap <buffer> <silent> [] :call search('\c^\s*end\W*$', 'bW' )
+nnoremap <buffer> <silent> [[ :call search('\c^\s*begin\>', 'bW' )
+xnoremap <buffer> <silent> ]" :exec "normal! gv"|call search('^\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\@<!\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)', "W" )
+nnoremap <buffer> <silent> ]" :call search('^\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\@<!\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)', "W" )
+xnoremap <buffer> <silent> ]} /\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>
+nnoremap <buffer> <silent> ]} :call search('\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>', 'W')
+xnoremap <buffer> <silent> ][ :exec "normal! gv"|call search('\c^\s*end\W*$', 'W' )
+xnoremap <buffer> <silent> ]] :exec "normal! gv"|call search('\c^\s*begin\>', 'W' )
+nnoremap <buffer> <silent> ][ :call search('\c^\s*end\W*$', 'W' )
+nnoremap <buffer> <silent> ]] :call search('\c^\s*begin\>', 'W' )
+inoremap <buffer> R :call sqlcomplete#Map("resetCache")
+inoremap <buffer> L :call sqlcomplete#Map("column_csv")
+inoremap <buffer> l :call sqlcomplete#Map("column_csv")
+inoremap <buffer> c :call sqlcomplete#Map("column")
+inoremap <buffer> v :call sqlcomplete#Map("view")
+inoremap <buffer> p :call sqlcomplete#Map("procedure")
+inoremap <buffer> t :call sqlcomplete#Map("table")
+inoremap <buffer> s :call sqlcomplete#Map("sqlStatement\\w*")
+inoremap <buffer> T :call sqlcomplete#Map("sqlType\\w*")
+inoremap <buffer> o :call sqlcomplete#Map("sqlOption\\w*")
+inoremap <buffer> f :call sqlcomplete#Map("sqlFunction\\w*")
+inoremap <buffer> k :call sqlcomplete#Map("sqlKeyword\\w*")
+inoremap <buffer> a :call sqlcomplete#Map("syntax")
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal noautoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+set colorcolumn=81
+setlocal colorcolumn=81
+setlocal comments=s1:/*,mb:*,ex:*/,:--,://
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=\\c\\<\\(VARIABLE\\|DECLARE\\|IN\\|OUT\\|INOUT\\)\\>
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'sql'
+setlocal filetype=sql
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=qc
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=GetSQLIndent()
+setlocal indentkeys=!^F,o,O,=~end,=~else,=~elseif,=~elsif,0=~when,0=)
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal nomodeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=sqlcomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=8
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'sql'
+setlocal syntax=sql
+endif
+setlocal tabstop=8
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 11) / 22)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+edit l1q3.sql
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <Left> =sqlcomplete#DrillOutOfColumns()
+inoremap <buffer> <Right> =sqlcomplete#DrillIntoTable()
+xnoremap <buffer> <silent> [" :exec "normal! gv"|call search('\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)\@!', "W" )
+nnoremap <buffer> <silent> [" :call search('\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)\@!', "W" )
+xnoremap <buffer> <silent> [{ ?\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>
+nnoremap <buffer> <silent> [{ :call search('\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>', 'bW')
+xnoremap <buffer> <silent> [] :exec "normal! gv"|call search('\c^\s*end\W*$', 'bW' )
+xnoremap <buffer> <silent> [[ :exec "normal! gv"|call search('\c^\s*begin\>', 'bW' )
+nnoremap <buffer> <silent> [] :call search('\c^\s*end\W*$', 'bW' )
+nnoremap <buffer> <silent> [[ :call search('\c^\s*begin\>', 'bW' )
+xnoremap <buffer> <silent> ]" :exec "normal! gv"|call search('^\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\@<!\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)', "W" )
+nnoremap <buffer> <silent> ]" :call search('^\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\@<!\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)', "W" )
+xnoremap <buffer> <silent> ]} /\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>
+nnoremap <buffer> <silent> ]} :call search('\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>', 'W')
+xnoremap <buffer> <silent> ][ :exec "normal! gv"|call search('\c^\s*end\W*$', 'W' )
+xnoremap <buffer> <silent> ]] :exec "normal! gv"|call search('\c^\s*begin\>', 'W' )
+nnoremap <buffer> <silent> ][ :call search('\c^\s*end\W*$', 'W' )
+nnoremap <buffer> <silent> ]] :call search('\c^\s*begin\>', 'W' )
+inoremap <buffer> R :call sqlcomplete#Map("resetCache")
+inoremap <buffer> L :call sqlcomplete#Map("column_csv")
+inoremap <buffer> l :call sqlcomplete#Map("column_csv")
+inoremap <buffer> c :call sqlcomplete#Map("column")
+inoremap <buffer> v :call sqlcomplete#Map("view")
+inoremap <buffer> p :call sqlcomplete#Map("procedure")
+inoremap <buffer> t :call sqlcomplete#Map("table")
+inoremap <buffer> s :call sqlcomplete#Map("sqlStatement\\w*")
+inoremap <buffer> T :call sqlcomplete#Map("sqlType\\w*")
+inoremap <buffer> o :call sqlcomplete#Map("sqlOption\\w*")
+inoremap <buffer> f :call sqlcomplete#Map("sqlFunction\\w*")
+inoremap <buffer> k :call sqlcomplete#Map("sqlKeyword\\w*")
+inoremap <buffer> a :call sqlcomplete#Map("syntax")
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal noautoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+set colorcolumn=81
+setlocal colorcolumn=81
+setlocal comments=s1:/*,mb:*,ex:*/,:--,://
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=\\c\\<\\(VARIABLE\\|DECLARE\\|IN\\|OUT\\|INOUT\\)\\>
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'sql'
+setlocal filetype=sql
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=qc
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=GetSQLIndent()
+setlocal indentkeys=!^F,o,O,=~end,=~else,=~elseif,=~elsif,0=~when,0=)
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal nomodeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=sqlcomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=8
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'sql'
+setlocal syntax=sql
+endif
+setlocal tabstop=8
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 15) / 30)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+argglobal
+edit l1q2.sql
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <Left> =sqlcomplete#DrillOutOfColumns()
+inoremap <buffer> <Right> =sqlcomplete#DrillIntoTable()
+xnoremap <buffer> <silent> [" :exec "normal! gv"|call search('\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)\@!', "W" )
+nnoremap <buffer> <silent> [" :call search('\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)\@!', "W" )
+xnoremap <buffer> <silent> [{ ?\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>
+nnoremap <buffer> <silent> [{ :call search('\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>', 'bW')
+xnoremap <buffer> <silent> [] :exec "normal! gv"|call search('\c^\s*end\W*$', 'bW' )
+xnoremap <buffer> <silent> [[ :exec "normal! gv"|call search('\c^\s*begin\>', 'bW' )
+nnoremap <buffer> <silent> [] :call search('\c^\s*end\W*$', 'bW' )
+nnoremap <buffer> <silent> [[ :call search('\c^\s*begin\>', 'bW' )
+xnoremap <buffer> <silent> ]" :exec "normal! gv"|call search('^\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\@<!\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)', "W" )
+nnoremap <buffer> <silent> ]" :call search('^\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\@<!\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)', "W" )
+xnoremap <buffer> <silent> ]} /\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>
+nnoremap <buffer> <silent> ]} :call search('\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>', 'W')
+xnoremap <buffer> <silent> ][ :exec "normal! gv"|call search('\c^\s*end\W*$', 'W' )
+xnoremap <buffer> <silent> ]] :exec "normal! gv"|call search('\c^\s*begin\>', 'W' )
+nnoremap <buffer> <silent> ][ :call search('\c^\s*end\W*$', 'W' )
+nnoremap <buffer> <silent> ]] :call search('\c^\s*begin\>', 'W' )
+inoremap <buffer> R :call sqlcomplete#Map("resetCache")
+inoremap <buffer> L :call sqlcomplete#Map("column_csv")
+inoremap <buffer> l :call sqlcomplete#Map("column_csv")
+inoremap <buffer> c :call sqlcomplete#Map("column")
+inoremap <buffer> v :call sqlcomplete#Map("view")
+inoremap <buffer> p :call sqlcomplete#Map("procedure")
+inoremap <buffer> t :call sqlcomplete#Map("table")
+inoremap <buffer> s :call sqlcomplete#Map("sqlStatement\\w*")
+inoremap <buffer> T :call sqlcomplete#Map("sqlType\\w*")
+inoremap <buffer> o :call sqlcomplete#Map("sqlOption\\w*")
+inoremap <buffer> f :call sqlcomplete#Map("sqlFunction\\w*")
+inoremap <buffer> k :call sqlcomplete#Map("sqlKeyword\\w*")
+inoremap <buffer> a :call sqlcomplete#Map("syntax")
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal noautoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+set colorcolumn=81
+setlocal colorcolumn=81
+setlocal comments=s1:/*,mb:*,ex:*/,:--,://
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=\\c\\<\\(VARIABLE\\|DECLARE\\|IN\\|OUT\\|INOUT\\)\\>
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'sql'
+setlocal filetype=sql
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=qc
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=GetSQLIndent()
+setlocal indentkeys=!^F,o,O,=~end,=~else,=~elseif,=~elsif,0=~when,0=)
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal nomodeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=sqlcomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=8
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'sql'
+setlocal syntax=sql
+endif
+setlocal tabstop=8
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 2 - ((1 * winheight(0) + 11) / 22)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+2
+normal! 0
+wincmd w
+argglobal
+edit l1q4.sql
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <Left> =sqlcomplete#DrillOutOfColumns()
+inoremap <buffer> <Right> =sqlcomplete#DrillIntoTable()
+xnoremap <buffer> <silent> [" :exec "normal! gv"|call search('\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)\@!', "W" )
+nnoremap <buffer> <silent> [" :call search('\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\(^\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)\@!', "W" )
+xnoremap <buffer> <silent> [{ ?\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>
+nnoremap <buffer> <silent> [{ :call search('\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>', 'bW')
+xnoremap <buffer> <silent> [] :exec "normal! gv"|call search('\c^\s*end\W*$', 'bW' )
+xnoremap <buffer> <silent> [[ :exec "normal! gv"|call search('\c^\s*begin\>', 'bW' )
+nnoremap <buffer> <silent> [] :call search('\c^\s*end\W*$', 'bW' )
+nnoremap <buffer> <silent> [[ :call search('\c^\s*begin\>', 'bW' )
+xnoremap <buffer> <silent> ]" :exec "normal! gv"|call search('^\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\@<!\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)', "W" )
+nnoremap <buffer> <silent> ]" :call search('^\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\).*\n\)\@<!\(\s*\(--\|\/\/\|\*\|\/\*\|\*\/\)\)', "W" )
+xnoremap <buffer> <silent> ]} /\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>
+nnoremap <buffer> <silent> ]} :call search('\c^\s*\(\(create\)\s\+\(or\s\+replace\s\+\)\{,1}\)\{,1}\<\(function\|procedure\|event\|\(existing\|global\s\+temporary\s\+\)\{,1}table\|trigger\|schema\|service\|publication\|database\|datatype\|domain\|index\|subscription\|synchronization\|view\|variable\)\>', 'W')
+xnoremap <buffer> <silent> ][ :exec "normal! gv"|call search('\c^\s*end\W*$', 'W' )
+xnoremap <buffer> <silent> ]] :exec "normal! gv"|call search('\c^\s*begin\>', 'W' )
+nnoremap <buffer> <silent> ][ :call search('\c^\s*end\W*$', 'W' )
+nnoremap <buffer> <silent> ]] :call search('\c^\s*begin\>', 'W' )
+inoremap <buffer> R :call sqlcomplete#Map("resetCache")
+inoremap <buffer> L :call sqlcomplete#Map("column_csv")
+inoremap <buffer> l :call sqlcomplete#Map("column_csv")
+inoremap <buffer> c :call sqlcomplete#Map("column")
+inoremap <buffer> v :call sqlcomplete#Map("view")
+inoremap <buffer> p :call sqlcomplete#Map("procedure")
+inoremap <buffer> t :call sqlcomplete#Map("table")
+inoremap <buffer> s :call sqlcomplete#Map("sqlStatement\\w*")
+inoremap <buffer> T :call sqlcomplete#Map("sqlType\\w*")
+inoremap <buffer> o :call sqlcomplete#Map("sqlOption\\w*")
+inoremap <buffer> f :call sqlcomplete#Map("sqlFunction\\w*")
+inoremap <buffer> k :call sqlcomplete#Map("sqlKeyword\\w*")
+inoremap <buffer> a :call sqlcomplete#Map("syntax")
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal noautoindent
+setlocal balloonexpr=
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+set colorcolumn=81
+setlocal colorcolumn=81
+setlocal comments=s1:/*,mb:*,ex:*/,:--,://
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=\\c\\<\\(VARIABLE\\|DECLARE\\|IN\\|OUT\\|INOUT\\)\\>
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'sql'
+setlocal filetype=sql
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=qc
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=GetSQLIndent()
+setlocal indentkeys=!^F,o,O,=~end,=~else,=~elseif,=~elsif,0=~when,0=)
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal nomodeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal nonumber
+setlocal numberwidth=4
+setlocal omnifunc=sqlcomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=8
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'sql'
+setlocal syntax=sql
+endif
+setlocal tabstop=8
+setlocal tags=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 15) / 30)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+wincmd w
+exe '1resize ' . ((&lines * 22 + 27) / 55)
+exe 'vert 1resize ' . ((&columns * 94 + 94) / 189)
+exe '2resize ' . ((&lines * 30 + 27) / 55)
+exe 'vert 2resize ' . ((&columns * 94 + 94) / 189)
+exe '3resize ' . ((&lines * 22 + 27) / 55)
+exe 'vert 3resize ' . ((&columns * 94 + 94) / 189)
+exe '4resize ' . ((&lines * 30 + 27) / 55)
+exe 'vert 4resize ' . ((&columns * 94 + 94) / 189)
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filnxtToO
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

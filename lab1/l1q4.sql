@@ -1,4 +1,4 @@
---l1q4
+--l1q4 Which book has the largest stock?
 SELECT title
 FROM stock,books,editions
 WHERE  editions.isbn=stock.isbn

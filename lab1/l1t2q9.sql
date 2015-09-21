@@ -12,7 +12,6 @@ INSERT INTO books -- Test case without both author and subject, should fail due 
 VALUES(6543,'Test without subject_id, should fail',NULL,Null);
 
 
-
 /* Output:
 INSERT 0 1
 ERROR:  new row for relation "books" violates check constraint "hassubject"

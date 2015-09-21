@@ -1,5 +1,4 @@
 -- l1t2q7 Delete both new tuples from step 4 and query the database to confirm.
-
 DELETE FROM editions
 WHERE isbn='5555';
 

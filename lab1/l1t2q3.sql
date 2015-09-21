@@ -1,5 +1,4 @@
 --l1t2q3
-
 INSERT INTO editions (isbn)
 VALUES ('5555');
 
