@@ -1,4 +1,4 @@
--- l1t2q2
+-- l1t2q2 -- "+p
 INSERT INTO editions
 VALUES ('5555', 12345, 1,59, '2012-12-02');
 /* Output:

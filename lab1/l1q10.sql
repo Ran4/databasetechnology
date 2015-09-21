@@ -14,11 +14,13 @@ Science
 
 SELECT subject
 FROM subjects
-WHERE subject NOT in (SELECT subject
-                        FROM subjects,books,editions,shipments
-                        WHERE books.subject_id=subjects.subject_id
-                        AND books.book_id=editions.book_id
-                        AND editions.isbn=shipments.isbn)
+WHERE subject NOT in
+        -- alla subjects som finns i shipments
+        (SELECT subject
+                FROM subjects,books,editions,shipments
+                WHERE books.subject_id=subjects.subject_id
+                AND books.book_id=editions.book_id
+                AND editions.isbn=shipments.isbn)
 ;
 
 /*

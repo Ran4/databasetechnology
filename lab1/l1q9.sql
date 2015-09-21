@@ -4,7 +4,7 @@ Answer: Jackson, Annie
 */
 
 SELECT last_name, first_name
-FROM customers,shipments, subjects, books, editions
+FROM customers, shipments, subjects, books, editions
 WHERE customers.customer_id=shipments.customer_id
     AND books.subject_id=subjects.subject_id
     AND editions.isbn=shipments.isbn

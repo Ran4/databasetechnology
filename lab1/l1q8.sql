@@ -1,6 +1,7 @@
 --l1q8 How much money has Booktown earned (so far)? (Explain to the teacher how you reason about the incomes and costs of Booktown) -- Answer: 136.15 or -12789.85, depending on how the stock is treated
 
-SELECT SUM(retail_price-cost)
+--retail_price is an attribute in stock
+SELECT SUM(retail_price - cost)
 FROM stock,shipments
 WHERE shipments.isbn=stock.isbn;
 
