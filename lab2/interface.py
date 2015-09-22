@@ -136,6 +136,24 @@ class DBContext:
         Will query the user for the information required to identify a tuple.
         If the filter field is left blank, no filters will be used."""
         pass
+        #First we should get which table to remove from 
+        table = pgdb.escape_string(raw_input("Choose table: "))
+        print table
+
+        #Then filter (as seen in the select func above, i.e. the where clause)
+        filters = raw_input("Apply filters: ")
+
+        # try/define query, inspired by line 119--122
+        try:
+            query = ""DELETE FROM %s%s;"" % (table, "" if filters =="" else " WHERE %s" % filters)
+        except (NameError,ValueError, TypeError,SyntaxError):
+            print "  Bad input."
+            return
+        print(query)     
+
+
+        #execute the query (line 128)
+        self.cur.execute(query)
 
     def insert(self):
         """inserts tuples.
