@@ -46,7 +46,7 @@ class DBContext:
         """Prints a menu of all functions this program offers
         Returns the numerical correspondant of the choice made."""
         for i,x in enumerate(self.menu):
-            print("%i. %s"%(i+1,x))
+            print("%i. %s" % (i+1,x))
             # this get_int function is defined below
         return self.get_int()
 
@@ -107,7 +107,7 @@ class DBContext:
         columns = raw_input("Choose column(s): ")
         print columns
         #list comprehension building a list ready to be reduced into a string.
-        filters = raw_input("Apply filters: ")
+        filters = raw_input("Apply filters (WHERE part): ")
         # This will set query to the long string "SELECT columns FROM
         # tables WHERE filters;" The %s indicate that a string from a
         # variable will be inserted here, Those string variables
@@ -119,25 +119,28 @@ class DBContext:
         #   (iterable) (here each element of columns is taken as b in turn
         # join is the python way to concatenate a list of strings
         try:
-            query = """SELECT %s FROM %s%s;""" % (reduce(lambda a,b:a+b,columns),
-                    "".join(tables), "" if filters == "" else " WHERE %s"%filters)
+            query = """SELECT %s FROM %s%s;""" % (
+                    reduce(lambda a,b:a+b,columns),
+                    "".join(tables),
+                    "" if filters == "" else " WHERE %s" % filters)
         except (NameError,ValueError, TypeError,SyntaxError):
             print "  Bad input."
             return
-        print(query)
+        print("query:" + query)
         # Here we do the select query at the cursor
         # No errors are caught so this crashes horribly on malformed queries
         self.cur.execute(query)
         # This function is defined below
         self.print_answer()
         #OK now you do the next two:
+        
     def remove(self):
         """Removes tuples.
         Will query the user for the information required to identify a tuple.
         If the filter field is left blank, no filters will be used."""
         
 
-        #First we should get which table to remove from 
+        #First we should get which table to remove from
         table = pgdb.escape_string(raw_input("Choose table: "))
         print table
 
@@ -150,26 +153,30 @@ class DBContext:
         except (NameError,ValueError, TypeError,SyntaxError):
             print "  Bad input."
             return
-        print(query)    
+        print(query)
 
         #execute the query (line 128)
         self.cur.execute(query)
 
-        # The defined function below (line def print_answer). Print all fetched stuff  
+        # The defined function below (line def print_answer). Print all fetched stuff
         self.print_answer()
 
     def insert(self):
         """inserts tuples.
         Will query the user for the information required to create tuples."""
         
-        #First we should get which table to insert into 
+        #First we should get which table to insert into
         table = pgdb.escape_string(raw_input("Choose table: "))
         print table
 
         columns = pgdb.escape_string(raw_input("Choose column(s): "))
 
         #Then filter (as seen in the select func above, i.e. the where clause)
-        values = pgdb.escape_string(raw_input("Values of tuple to insert: "))
+        #values = pgdb.escape_string(raw_input("Values of tuple to insert: "))
+        values = raw_input("Values of tuple to insert: ")
+        #valueList = values.split(",")
+        
+        print "we got values=>>%s<<" % values
 
         # try/define query, inspired by line 119--122
         try:
@@ -177,13 +184,15 @@ class DBContext:
         except (NameError,ValueError, TypeError,SyntaxError):
             print "  Bad input."
             return
-        print(query)    
+        print query
 
         #execute the query (line 128)
         self.cur.execute(query)
+        #print "Comitting..."
+        self.conn.commit()
 
-        # The defined function below (line def print_answer). Print all fetched stuff  
-        self.print_answer()
+        # The defined function below (line def print_answer). Print all fetched stuff
+        #self.print_answer()
 
     def exit(self):
         self.cur.close()
@@ -191,9 +200,9 @@ class DBContext:
         exit()
     
     def print_answer(self):
-    # We print all the stuff that was just fetched.
-            print("\n".join([", ".join([str(a) for a in x])
-                for x in self.cur.fetchall()]))
+        # We print all the stuff that was just fetched.
+        print("\n".join([", ".join([str(a) for a in x])
+            for x in self.cur.fetchall()]))
 
     # we call this below in the main function.
     def run(self):
@@ -206,7 +215,7 @@ class DBContext:
                 # function is run first (defined above), then the
                 # return value is used as an index into the list
                 # actions defined above, then that action is called.
-                actions[self.print_menu()-2]()
+                actions[self.print_menu()-1]()
                 print
             except IndexError:
                 # if somehow the index into actions is wrong we just loop back
