@@ -7,23 +7,29 @@ class DBContext:
     Each function gathers the minimal amount of information required and executes the query."""
 
     def __init__(self): #PG-connection setup
-        print("AUTHORS NOTE: If you submit faulty information here, I am not responsible for the consequences.")
+        print("AUTHORS NOTE: If you submit faulty information here, "
+                "I am not responsible for the consequences.")
 
         print "The idea is that you, the authorized database user, log in."
-        print "Then the interface is available to employees whos should only be able to enter shipments as they are made."
-        params = {'host':'nestor2.csc.kth.se', 'user':raw_input("Username: "), 'database':'', 'password':raw_input("Password: ")}
+        print("Then the interface is available to employees whos should only "
+            "be able to enter shipments as they are made.")
+        params = {'host':'nestor2.csc.kth.se', 'user':raw_input("Username: "),
+            'database':'', 'password':raw_input("Password: ")}
         self.conn = pgdb.connect(**params)
         self.menu = ["Record a shipment","Show stock", "Show shipments", "Exit"]
         self.cur = self.conn.cursor()
+        
     def print_menu(self):
-        """Prints a menu of all functions this program offers.  Returns the numerical correspondant of the choice made."""
+        """Prints a menu of all functions this program offers.
+            Returns the numerical correspondant of the choice made."""
         for i,x in enumerate(self.menu):
             print("%i. %s"%(i+1,x))
         return self.get_int()
 
     def get_int(self):
         """Retrieves an integer from the user.
-        If the user fails to submit an integer, it will reprompt until an integer is submitted."""
+        If the user fails to submit an integer, it will reprompt
+        until an integer is submitted."""
         while True:
             try:
                 choice = int(input("Choose: "))
