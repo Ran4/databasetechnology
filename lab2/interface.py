@@ -135,7 +135,8 @@ class DBContext:
         """Removes tuples.
         Will query the user for the information required to identify a tuple.
         If the filter field is left blank, no filters will be used."""
-        pass
+        
+
         #First we should get which table to remove from 
         table = pgdb.escape_string(raw_input("Choose table: "))
         print table
@@ -145,20 +146,45 @@ class DBContext:
 
         # try/define query, inspired by line 119--122
         try:
-            query = ""DELETE FROM %s%s;"" % (table, "" if filters =="" else " WHERE %s" % filters)
+            query = """DELETE FROM %s%s;""" % (table, "" if filters =="" else " WHERE %s" % filters)
         except (NameError,ValueError, TypeError,SyntaxError):
             print "  Bad input."
             return
-        print(query)     
-
+        print(query)    
 
         #execute the query (line 128)
         self.cur.execute(query)
 
+        # The defined function below (line def print_answer). Print all fetched stuff  
+        self.print_answer()
+
     def insert(self):
         """inserts tuples.
         Will query the user for the information required to create tuples."""
-        pass
+        
+        #First we should get which table to insert into 
+        table = pgdb.escape_string(raw_input("Choose table: "))
+        print table
+
+        columns = pgdb.escape_string(raw_input("Choose column(s): "))
+
+        #Then filter (as seen in the select func above, i.e. the where clause)
+        values = pgdb.escape_string(raw_input("Values of tuple to insert: "))
+
+        # try/define query, inspired by line 119--122
+        try:
+            query = """INSERT INTO %s(%s) VALUES (%s);""" % (table, columns, values)
+        except (NameError,ValueError, TypeError,SyntaxError):
+            print "  Bad input."
+            return
+        print(query)    
+
+        #execute the query (line 128)
+        self.cur.execute(query)
+
+        # The defined function below (line def print_answer). Print all fetched stuff  
+        self.print_answer()
+
     def exit(self):
         self.cur.close()
         self.conn.close()
