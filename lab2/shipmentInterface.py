@@ -43,12 +43,18 @@ class DBContext:
         
         #THESE INPUT LINES  ARE NOT GOOD ENOUGH    
         # YOU NEED TO TYPE CAST/ESCAPE THESE AND CATCH EXCEPTIONS
-        CID = raw_input("cutomerID: ")
-        SID = int(input("shipment ID: "))
-        Sisbn= (raw_input("isbn: ").strip())
-        Sdate= raw_input("Ship date: ").strip()
-        # THIS IS NOT RIGHT  YOU MUST FORM A QUERY THAT HELPS
-        query ="SELECT something FROM somewhere WHERE conditions"
+        
+        #Type casted and using escape_string.
+        try:
+            CID = int(input("customerID: ") 
+            SID = int(input("shipment ID: "))
+            Sisbn= pgdb.escape_string((raw_input("isbn: ")).strip())
+            Sdate= pgdb.escape_string(raw_input("Ship date: ")).strip()
+            # THIS IS NOT RIGHT  YOU MUST FORM A QUERY THAT HELPS
+            query ="SELECT stock FROM stock WHERE isbn='%s'" %Sisbn
+        except(NameError,ValueError, TypeError,SyntaxError) as e:
+                print("Error in input") + e # Not sure if it works, haven't tested
+                return  
         print query
         # HERE YOU SHOULD start a transaction    
         
@@ -56,8 +62,14 @@ class DBContext:
         self.cur.execute(query)
         #HERE YOU NEED TO USE THE RESULT OF THE QUERY TO TEST IF THER ARE 
         #ANY BOOKS IN STOCK 
+        value = self.cur.fetchone()
+        if not values:
+            print ("Book with ISBN:%s not found." % Sisbn)
+            return
+
         # YOU NEED TO CHANGE THIS TO SOMETHING REAL
         cnt=0;
+        ################ Sander: kollade på det ovanför detta, dvs. ln 47--67
         if cnt < 1:
             print("No more books in stock :(")
             return
