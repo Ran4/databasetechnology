@@ -29,8 +29,10 @@ class DBContext:
         # of wheich we 'hard code here such as the host, wnd others we call
         # the built in python function raw_input to get from the user.
         # All are stored in a variable that we chose to call params.
-        params = {'host':'nestor2.csc.kth.se', 'user':raw_input("Username: "),
-                'database':raw_input("Database: "), 'password':raw_input("Password: ")}
+        #params = {'host':'nestor2.csc.kth.se', 'user':raw_input("Username: "),
+        #        'database':raw_input("Database: "), 'password':raw_input("Password: ")}
+        params = {'host':'127.0.0.1:5432', 'user':'postgres',
+                'database':'postgres', 'password':'hejhoppkth'}
         self.conn = pgdb.connect(**params)
         # Here we create an attribute of our class (DBContex) called
         # menu as a list of strings.
@@ -160,7 +162,7 @@ class DBContext:
                 # function is run first (defined above), then the
                 # return value is used as an index into the list
                 # actions defined above, then that action is called.
-                actions[self.print_menu()-1]()
+                actions[self.print_menu()-2]()
                 print
             except IndexError:
                 # if somehow the index into actions is wrong we just loop back
