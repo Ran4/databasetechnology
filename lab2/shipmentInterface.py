@@ -2,6 +2,7 @@
 #encoding: utf-8
 import pgdb
 from sys import argv
+import sys
 
 class DBContext:
     """DBContext is a small interface to a database that simplifies SQL.
@@ -13,8 +14,10 @@ class DBContext:
             "be able to enter shipments as they are made.")
         #params = {'host':'nestor2.csc.kth.se', 'user':raw_input("Username: "),
         #    'database':'', 'password':raw_input("Password: ")}
+        #params = {'host':'localhost:5432', 'user':'postgres',
+        #    'database':'postgres', 'password':'hejhoppkth'}
         params = {'host':'localhost:5432', 'user':'postgres',
-            'database':'postgres', 'password':'hejhoppkth'}
+            'database':'postgres', 'password':'postgressander'}
         self.conn = pgdb.connect(**params)
         self.menu = ["Record a shipment","Show stock", "Show shipments", "Exit"]
         self.cur = self.conn.cursor()
@@ -39,68 +42,91 @@ class DBContext:
             except (NameError,ValueError, TypeError,SyntaxError):
                 print("That was not a number, genious.... :(")
                 
-    def makeTransaction(self, cid, sid, shipment_isbn, shipment_date, query):
-        pass
+        
+    def _addShipment(self, sid, cid, shipment_isbn, shipment_date):
+        query="""INSERT INTO shipments VALUES (%i, %i, '%s','%s');"""  % \
+            (sid,cid,shipment_isbn,shipment_date)
+        #print query
+        #YOU NEED TO Catch exceptions and rollback the transaction
+        try:
+            self.cur.execute(query)
+            print "Shipment created"
+            #print "The _addShipment query executed successfully!"
+        except pgdb.Error as e:
+            print "There was an exception: %s, performing rollback" % str(e)
+            self.conn.rollback()
+            return False
+        return True
+    
+    def _updateStock(self, shipment_isbn):
+        """Returns True if we successfully updated stock"""
+        query="""UPDATE stock SET stock=stock-1 WHERE isbn='%s';""" % \
+            (shipment_isbn)
+        #print "updateStock query: %s" % query
+        #YOU NEED TO Catch exceptions  and rollback the transaction
+        try:
+            self.cur.execute(query)
+            print "Stock decremented"
+            #print "The _updateStock query executed successfully!"
+        except pgdb.Error as e:
+            print "There was an exception: %s, performing rollback" % str(e)
+            self.conn.rollback()
+            return False
+        return True
+    
+    def _checkResultOfQuery(self, shipment_isbn):
+        #HERE YOU NEED TO USE THE RESULT OF THE QUERY TO TEST IF THER ARE
+        #ANY BOOKS IN STOCK
+        stock_values = self.cur.fetchone()
+        #print "stock_value is %s, of type %s" % (stock_values, type(stock_value))
+        if stock_values == None:
+            print ("Book with ISBN %s not found." % shipment_isbn)
+            return 0
 
-    def makeShipments(self):
-        #THESE INPUT LINES  ARE NOT GOOD ENOUGH
-        # YOU NEED TO TYPE CAST/ESCAPE THESE AND CATCH EXCEPTIONS
-
-        #Type casted and using escape_string.
+        if stock_values[0] <= 0:
+            print("No more books in stock :(")
+            return 0
+        else:
+            print "We have the book in stock"
+            return stock_values[0]
+        
+    def _makeTransaction(self, query):
+        try:
+            self.cur.execute(query)
+            #print "The query executed successfully!"
+        except pgdb.Error as e:
+            print "There was an exception: %s" % str(e)
+            return
+    
+    def _getShipmentInfo(self):
         try:
             cid = int(input("customerID: "))
             sid = int(input("shipment ID: "))
             shipment_isbn = pgdb.escape_string((raw_input("isbn: ")).strip())
             shipment_date = pgdb.escape_string(raw_input("Ship date: ")).strip()
             # THIS IS NOT RIGHT  YOU MUST FORM A QUERY THAT HELPS
-            query ="SELECT stock FROM stock WHERE isbn='%s'" %shipment_isbn
+            query ="SELECT stock FROM stock WHERE isbn='%s'" % shipment_isbn
         except (NameError, ValueError, TypeError, SyntaxError) as e:
                 print "Error in input" + str(e) # Not sure if it works, haven't tested
-                return
-        print "query=" + query
+                return None
+        #print "query=" + query
         
-        # HERE YOU SHOULD start a transaction
-        #YOU NEED TO Catch exceptions ie bad queries
-        try:
-            self.cur.execute(query)
-            print "The query executed successfully!"
-        except pgdb.Error as e:
-            print "There was an exception executing the query '%s': %s" %\
-                    (query, str(e))
-            return
-        
-        makeTransaction(cid, sid, shipment_isbn, shipment_date, query)
-        
-        #HERE YOU NEED TO USE THE RESULT OF THE QUERY TO TEST IF THER ARE
-        #ANY BOOKS IN STOCK
-        value = self.cur.fetchone()
-        if not values:
-            print ("Book with ISBN:%s not found." % shipment_isbn)
-            return
+        result = (sid, cid, shipment_isbn, shipment_date, query)
+        return result
 
-        # YOU NEED TO CHANGE THIS TO SOMETHING REAL
-        cnt = 0
-        #Sander : Kollade på det ovanför detta dvs. ln 47-67
-        if cnt < 1:
-            print("No more books in stock :(")
-            return
+    def makeShipments(self):
+        self.conn.commit()
+        
+        result = self._getShipmentInfo()
+        if result:
+            sid, cid, shipment_isbn, shipment_date, query = result
         else:
-            print "WE have the book in stock"
-
-        query="""UPDATE stock SET stock=stock-1 WHERE isbn='%s';""" % \
-            (shipment_isbn)
-        print query
-        #YOU NEED TO Catch exceptions  and rollback the transaction
-        self.cur.execute(query)
-        print "stock decremented"
-
-        query="""INSERT INTO shipments VALUES (%i, %i, '%s','%s');"""  % \
-            (sid,cid,shipment_isbn,shipment_date)
-        print query
-        #YOU NEED TO Catch exceptions and rollback the transaction
-        self.cur.execute(query)
-        print "shipment created"
-        # This ends the transaction (and starts a new one)
+            return
+        
+        self._makeTransaction(query)
+        if self._checkResultOfQuery(shipment_isbn) <= 0: return
+        if not self._updateStock(shipment_isbn): return
+        self._addShipment(sid, cid, shipment_isbn, shipment_date)
         self.conn.commit()
 
     def showStock(self):

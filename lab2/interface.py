@@ -189,7 +189,7 @@ class DBContext:
         #execute the query (line 128)
         self.cur.execute(query)
         #print "Comitting..."
-        self.conn.commit()
+        self.conn.commit() #this might better be done only in the exit method
 
         # The defined function below (line def print_answer). Print all fetched stuff
         #self.print_answer()
