@@ -2,17 +2,17 @@
 import pgdb
 from sys import argv
 #  Here you shall complete the code to allow a customer to use this interface to check his or her shipments.
-#  You will fill in the 'shipments' funtion 
+#  You will fill in the 'shipments' funtion
 
 #  The code should not allow the customer to find out other customers or other booktown data.
-#  Security is taken as the customer knows his own customer_id, first and last names.  
+#  Security is taken as the customer knows his own customer_id, first and last names.
 #  So not really so great but it illustrates how one would check a password if there were the addition of encription.
 
-#  Most of the code is here except those little pieces needed to avoid injection attacks.  
+#  Most of the code is here except those little pieces needed to avoid injection attacks.
 #  You might want to read up on pgdb, postgresql, and this useful function: pgdb.escape_string(some text)
 
 #  You should also add exception handling.  Search WWW for 'python try' or 'exception' for things like:
-#         try: 
+#         try:
 #             ...
 #         except (errorcode1, errorcode2,...):
 #             ....
@@ -50,7 +50,7 @@ class DBContext:
         self.conn = pgdb.connect(**params)
         self.menu = ["Shipments Status", "Exit"]
         self.cur = self.conn.cursor()
-        
+
     def print_menu(self):
         """Prints a menu of all functions this program offers.  Returns the numerical correspondant of the choice made."""
         print
@@ -69,11 +69,11 @@ class DBContext:
                 print("Invalid choice.")
             except (NameError,ValueError, TypeError,SyntaxError):
                 print("That was not a number, genious.... :(")
- 
+
     def shipments(self):
         print "In shipments()"
         # These input funtions are not correct so  exceptions caught and handled.
- 
+
         # ID should be hard typed to an integer
         #  So think that they can enter: 1 OR 1=1
         while True:
@@ -153,7 +153,7 @@ class DBContext:
         print "\tship_id\tship_date\t\tisbn\t\ttitle"
         for shipment in values:
             print "\t" + "\t".join(map(str, shipment))
-        
+
         # Here the list should print for example:
         #    Customer 860 Tim Owens:
         #    shipment_id,ship_date,isbn,title
