@@ -1,9 +1,5 @@
-let $nl := "&#10;"
-let $video := (doc("videos.xml")/result/videos/video)
-(:let $genre := $video/genre:)
-(:for $videoTitle in $video/title where $video/genre = "special" :)
-(:for $videoGenre in $video/genre where ($video/genre="special"):)
-let $videoTitle := $video/title
-where $video/genre = "special"
-(:  return concat($nl,$videoTitle) :)
+(:Which movies have the genre "special"?:)
+let $video := doc("videos.xml")/result/videos/video
+(:let $videoTitle := doc("videos.xml")/result/videos/video[genre='special']/title:)
+let $videoTitle := $video[genre='special']/title
 return $videoTitle
