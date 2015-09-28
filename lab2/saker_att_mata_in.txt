@@ -1,0 +1,27 @@
+python interface.py
+2
+authors
+author_id, last_name, first_name
+9324982, 'efternamn', 'fornamn'
+3
+authors
+author_id=9324982
+
+python customerInterface.py
+1
+107
+Annie
+Jackson
+
+python shipmentInterface.py
+1
+107
+9989
+039480001X
+2002-09-17 02:42:22+02
+
+
+books((book_id), title, author_id, subject_id)
+publishers((publisher_id), name, address)
+authors((author_id), last_name, first_name)
+stock((isbn), cost, retail_price, stock) shipments((shipment_id), customer_id, isbn, ship_date) customers((customer_id), last_name, first_name) editions((isbn), book_id, edition, publisher_id, publication_date) subjects((subject_id), subject, location)

@@ -7,8 +7,9 @@ let $video := doc("videos.xml")/result/videos/video
 (:return $director:)
 (:let $videoTitle := $video[count($video/director) >= 2]/title:)
 for $director in doc("videos.xml")/result/videos/video/director
-let $n := count($video/director)
-where ($n > 1)
+where (count($video/director) > 1)
+
+(:for $director in doc("videos.xml")/result/videos/video[count(director) >= 2]/director:)
 
 (:for $video in doc("videos.xml")/result/videos/video:)
 (:where $video[count(director) >= 2]:)
@@ -16,4 +17,5 @@ where ($n > 1)
 (:let $videoTitle := $video/title:)
 (:  return concat($nl,$videoTitle) :)
 (:return $videoTitle:)
-return $director
+(:return $director:)
+return $video[count($video/director) > 1]/director

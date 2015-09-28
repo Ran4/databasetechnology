@@ -22,8 +22,8 @@ class DBContext:
     # the bottom of this file we will create on of these.
     # this __init___ operation is automatically called when the object is created.
     def __init__(self): #PG-connection setup
-        print("AUTHORS NOTE: If you submit faulty information here,"
-            "I am not responsible for the consequences.")
+        #print("AUTHORS NOTE: If you submit faulty information here,"
+        #    "I am not responsible for the consequences.")
 
         # we need to call the connect function with the right parameters some
         # of wheich we 'hard code here such as the host, wnd others we call
@@ -31,8 +31,10 @@ class DBContext:
         # All are stored in a variable that we chose to call params.
         #params = {'host':'nestor2.csc.kth.se', 'user':raw_input("Username: "),
         #        'database':raw_input("Database: "), 'password':raw_input("Password: ")}
+        #params = {'host':'127.0.0.1:5432', 'user':'postgres',
+                #'database':'postgres', 'password':'hejhoppkth'}
         params = {'host':'127.0.0.1:5432', 'user':'postgres',
-                'database':'postgres', 'password':'hejhoppkth'}
+                'database':'postgres', 'password':'postgressander'}
         self.conn = pgdb.connect(**params)
         # Here we create an attribute of our class (DBContex) called
         # menu as a list of strings.
@@ -126,7 +128,7 @@ class DBContext:
         except (NameError,ValueError, TypeError,SyntaxError):
             print "  Bad input."
             return
-        print("query:" + query)
+        #print("query:" + query)
         # Here we do the select query at the cursor
         # No errors are caught so this crashes horribly on malformed queries
         self.cur.execute(query)
@@ -159,7 +161,7 @@ class DBContext:
         self.cur.execute(query)
 
         # The defined function below (line def print_answer). Print all fetched stuff
-        self.print_answer()
+        #self.print_answer()
 
     def insert(self):
         """inserts tuples.
@@ -176,7 +178,7 @@ class DBContext:
         values = raw_input("Values of tuple to insert: ")
         #valueList = values.split(",")
         
-        print "we got values=>>%s<<" % values
+        #print "we got values=>>%s<<" % values
 
         # try/define query, inspired by line 119--122
         try:

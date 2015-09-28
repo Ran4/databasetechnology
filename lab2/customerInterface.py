@@ -46,7 +46,8 @@ class DBContext:
         #print "The idea is that you, the authorized database user, log in."
         #print "Then the interface is available to customers whos should only be able to see their own shipments."
         #params = {'host':'nestor2.csc.kth.se', 'user':raw_input("Username: "), 'database':'', 'password':raw_input("Password: ")}
-        params = {'host':'localhost:5432', 'user':'postgres', 'database':'postgres', 'password':'hejhoppkth'}
+        #params = {'host':'localhost:5432', 'user':'postgres', 'database':'postgres', 'password':'hejhoppkth'}
+        params = {'host':'localhost:5432', 'user':'postgres', 'database':'postgres', 'password':'postgressander'}
         self.conn = pgdb.connect(**params)
         self.menu = ["Shipments Status", "Exit"]
         self.cur = self.conn.cursor()

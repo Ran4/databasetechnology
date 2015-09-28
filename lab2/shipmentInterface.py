@@ -115,7 +115,7 @@ class DBContext:
         return result
 
     def makeShipments(self):
-        self.conn.commit()
+        self.conn.commit() #Here the transaction starts
         
         result = self._getShipmentInfo()
         if result:
@@ -127,7 +127,7 @@ class DBContext:
         if self._checkResultOfQuery(shipment_isbn) <= 0: return
         if not self._updateStock(shipment_isbn): return
         self._addShipment(sid, cid, shipment_isbn, shipment_date)
-        self.conn.commit()
+        self.conn.commit() #If we got here, everything should be fine
 
     def showStock(self):
         query="""SELECT * FROM stock;"""
