@@ -6,7 +6,3 @@ let $video := doc("videos.xml")/result/videos/video
 for $director in distinct-values($video/director)
 where count($video/director[. = $director]) >= 2
 return $video[director = $director]/title
-(:return <director>{$director}</director>:)
-
-(:  return concat($nl,$videoTitle) :)
-(:return data($director):)
