@@ -3,6 +3,6 @@ let $videos := doc("videos.xml")/result/videos/video
 
 let $topmovies :=
     for $video in $videos
-    order by $video/user_rating descending 
+    order by $video/user_rating descending
     return $video/title
 return subsequence($topmovies, 1, 10)
