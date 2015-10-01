@@ -12,4 +12,9 @@ let $mostcommonactorsrefid :=
     where count($videos/actorRef[. = data($actorRef)]) = $numofmostcommonactor
     return $actorRef
 
-return ($actorss/actor[@id = $mostcommonactorsrefid])
+(:return distinct-values($actorss/actor[@id = $mostcommonactorsrefid]):)
+let $mostcommonactornames :=
+    distinct-values($actorss/actor[@id = $mostcommonactorsrefid])
+
+for $actorname in $mostcommonactornames
+    return concat('actor="', $actorname, '"')

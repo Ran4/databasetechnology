@@ -8,4 +8,5 @@ let $foo :=
         return distinct-values($actorss/actor[@id = $actorid])
 
 (:return <actor>{subsequence($foo, 1, 1)}</actor>:)
-return subsequence($foo, 1, 1)
+(:return subsequence($foo, 1, 1):)
+return concat('actor="',$foo[1],'"')
