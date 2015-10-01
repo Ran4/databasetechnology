@@ -9,9 +9,9 @@ let $numofmostcommonactor := max(
     return count($videos/actorRef[. = data($actorRef)])
 )
 
-let $mostcommonactorsrefid := 
+let $mostcommonactorsrefid :=
     for $actorRef in $actorss/actor/@id
     where count($videos/actorRef[. = data($actorRef)]) = $numofmostcommonactor
     return $actorRef
 
-return $actorss/actor[@id = $mostcommonactorsrefid]
+return ($actorss/actor[@id = $mostcommonactorsrefid])
