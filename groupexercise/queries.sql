@@ -5,9 +5,11 @@ WHERE venues.arena = "Friends Arena"
 
 --Actual queries
 --1. What is going on at Friends Arena on Sunday?
+/*
 SELECT name
 FROM Events NATURAL JOIN Schedules NATURAL JOIN Venues
 WHERE venues.arena = "Friends Arena" AND schedules.datetime = SUNDAY
+*/
 
 --2. What teams are competing in the women’s slalom alpine ski race?
 /*

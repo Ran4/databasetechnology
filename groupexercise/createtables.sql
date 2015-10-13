@@ -27,29 +27,36 @@ CREATE TABLE Contestants (
     sex,
 );*/
 
+DROP TABLE IF EXISTS Sports;
+DROP TABLE IF EXISTS Events;
+DROP TABLE IF EXISTS Venues;
+
 CREATE TABLE Sports (
-    sportName TEXT PRIMARY KEY, --e.g. Cross-country skiing
+    sportName TEXT PRIMARY KEY --e.g. Cross-country skiing
 );
 
 CREATE TABLE Events ( --e.g. Men’s 30 km ski
     eventID SERIAL PRIMARY KEY,
     sportName TEXT REFERENCES Sports.sportName, --30 km ski
-    sex CHAR(1), --M,F,N
-    competitionID REFERENCES Competitions.competitionID,
+    sex CHAR(1), --M,F,N as in Male, Female, N/A
+    CHECK (sex IN ('M', 'F', 'N'))
 );
+/*
 
 CREATE TABLE Competitions ( -- e.g. round 1, group 3
-    eventID SERIAL,
-    competitionID PRIMARY KEY,
+    eventID SERIAL REFERENCES Events.eventID,
+    competitionID,
     round,
     group_,
     arenaID,
-);
-
+);*/
+/*
 CREATE TABLE Venues ( -- e.g. Globen, ice rink
-    venueName,
-    arena, --can be in multiple venues but not multiple arenas at the same time
+    venueName TEXT,
+    arena TEXT PRIMARY KEY --can be in multiple venues but not multiple arenas at the same time
 );
+*/
+
 /*
 CREATE TABLE Schedules (
     datetime,
@@ -58,9 +65,10 @@ CREATE TABLE Schedules (
     event REFERENCES Events.eventID -- relation to event
 );*/
 
-
+/*
 --Insert stuff here
 INSERT INTO Sports VALUES ('30 km ski');
 
 INSERT INTO Events VALUES ('30 km ski', 'M', compid);
 SELECT * FROM Events;
+*/
