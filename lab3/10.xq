@@ -2,7 +2,7 @@
 let $nl := "&#10;"
 let $videos := doc("videos.xml")/result/videos/video
 
-let $output := 
+let $output :=
     for $outergenre in distinct-values($videos/genre)
         let $videoswithoutergenre := concat('    <title>', string-join(
             for $video in $videos
