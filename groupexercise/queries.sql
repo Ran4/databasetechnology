@@ -16,11 +16,16 @@ WHERE Competitions.competitionID IN (SELECT competitionID
 --SELECT competitionID EXTRACT(DOW FROM Schedules.datetime) = 0;
 
 --2. What teams are competing in the women’s slalom alpine ski race?
-/*
 SELECT *
-FROM NationalTeams NATURAL JOIN Sports
-WHERE Sports.sportName = 'Slalom Alpine Ski' AND Sports.sex = 'F';
+FROM NationalTeams
+WHERE nationalTeams.country IN (SELECT Contestants.country
+        FROM CompetesIn NATURAL JOIN Competitions NATURAL JOIN Contestants NATURAL JOIN Events NATURAL JOIN nationalTeams
+        WHERE Events.sportName = 'Slalom Alpine Ski' AND Events.sex = 'F');
 
+--contestantname | competitionid | eventid | roundnumber | groupnumber | sex | country | sportname
+
+
+/*
 --3. Where and when are the finals in the bobsleigh race being run?
 --SELECT venueName, arena, datetime
 --FROM Schedules
