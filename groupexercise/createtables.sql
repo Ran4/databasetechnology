@@ -16,33 +16,40 @@ Phase 1
 3.  Repeat steps 1 and 2 until your list seems complete
 */
 
-/*CREATE TABLE NationalTeams (
-    country, --of type https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
-    nationalTeamID PRIMARY KEY
-);
-
-CREATE TABLE Contestants (
-    nationalTeamID,
-    contestantName,
-    sex,
-);*/
-
-DROP TABLE IF EXISTS Sports;
-DROP TABLE IF EXISTS Events;
+DROP TABLE IF EXISTS Schedules;
+DROP TABLE IF EXISTS Contestants;
 DROP TABLE IF EXISTS Venues;
+DROP TABLE IF EXISTS Events;
+DROP TABLE IF EXISTS NationalTeams;
+DROP TABLE IF EXISTS Sports;
 
 CREATE TABLE Sports (
-    sportName TEXT PRIMARY KEY --e.g. Cross-country skiing
+    sportName TEXT PRIMARY KEY, --e.g. Cross-country skiing
+    sex CHAR(1) CHECK (sex IN ('M', 'F', 'N')) --M,F,N as in Male, Female, N/A
+);
+
+CREATE TABLE NationalTeams (
+    country CHAR(3), --of type https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+    sportName TEXT REFERENCES Sports(sportName), --of type https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+    PRIMARY KEY (country, sport)
+);
+
+
+CREATE TABLE Contestants (
+    contestantName TEXT,
+    sex CHAR(1) CHECK (sex IN ('M', 'F', 'N')), --M,F,N as in Male, Female, N/A
+    country CHAR(3),
+    sportName TEXT REFERENCES Sports(sportName), --of type https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+    FOREIGN KEY (country, sport) REFERENCES NationalTeams
 );
 
 CREATE TABLE Events ( --e.g. Men’s 30 km ski
     eventID SERIAL PRIMARY KEY,
-    sportName TEXT REFERENCES Sports.sportName, --30 km ski
-    sex CHAR(1), --M,F,N as in Male, Female, N/A
-    CHECK (sex IN ('M', 'F', 'N'))
+    sportName TEXT REFERENCES Sports(sportName), --30 km ski
+    eventName TEXT
 );
-/*
 
+/*
 CREATE TABLE Competitions ( -- e.g. round 1, group 3
     eventID SERIAL REFERENCES Events.eventID,
     competitionID,
@@ -50,25 +57,32 @@ CREATE TABLE Competitions ( -- e.g. round 1, group 3
     group_,
     arenaID,
 );*/
-/*
+
 CREATE TABLE Venues ( -- e.g. Globen, ice rink
-    venueName TEXT,
-    arena TEXT PRIMARY KEY --can be in multiple venues but not multiple arenas at the same time
+    name TEXT,
+    arena TEXT, --can be in multiple venues but not multiple arenas at the same time
+    PRIMARY KEY (name, arena)
 );
-*/
 
-/*
 CREATE TABLE Schedules (
-    datetime,
-    venueName,
-    sport,
-    event REFERENCES Events.eventID -- relation to event
-);*/
+    datetime DATE,
+    venueName TEXT,
+    arena TEXT,
+    eventID SERIAL REFERENCES Events(eventID), -- relation to event
+    FOREIGN KEY (venueName, arena) REFERENCES Venues(name, arena)
+);
 
-/*
+
 --Insert stuff here
-INSERT INTO Sports VALUES ('30 km ski');
+INSERT INTO Sports VALUES ('Slalom Alpine Ski', 'F');
+INSERT INTO Sports VALUES ('Bobsleigh', 'N');
+INSERT INTO NationalTeams VALUES ('FIN', 'Slalom Alpine Ski');
+INSERT INTO NationalTeams VALUES ('SWE', 'Bobsleigh');
+INSERT INTO Venues VALUES ('Friends Arena', 'Main Arena');
+INSERT INTO Venues VALUES ('Friends Arena', 'Secondary Arena');
+INSERT INTO Venues VALUES ('Lillehammer Olympic Bobsleigh and Luge Track', 'Bobsleigh Track');
+INSERT INTO Venues VALUES ('Hammarbybacken Bobsleigh Track', 'Bobsleigh Track');
+INSERT INTO Events VALUES (DEFAULT, 'Bobsleigh', 'Four-person');
+INSERT INTO Events VALUES (DEFAULT, 'Bobsleigh', 'Two-man');
+INSERT INTO Schedules VALUES ('2015-10-25', 'Friends Arena', 'Main Arena', 1);
 
-INSERT INTO Events VALUES ('30 km ski', 'M', compid);
-SELECT * FROM Events;
-*/
