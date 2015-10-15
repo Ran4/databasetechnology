@@ -16,9 +16,10 @@ Phase 1
 3.  Repeat steps 1 and 2 until your list seems complete
 */
 
-DROP TABLE IF EXISTS Schedules;
 DROP TABLE IF EXISTS Contestants;
+DROP TABLE IF EXISTS Schedules;
 DROP TABLE IF EXISTS Venues;
+DROP TABLE IF EXISTS Competitions;
 DROP TABLE IF EXISTS Events;
 DROP TABLE IF EXISTS NationalTeams;
 DROP TABLE IF EXISTS Sports;
@@ -31,16 +32,15 @@ CREATE TABLE Sports (
 CREATE TABLE NationalTeams (
     country CHAR(3), --of type https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
     sportName TEXT REFERENCES Sports(sportName), --of type https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
-    PRIMARY KEY (country, sport)
+    PRIMARY KEY (country, sportName)
 );
-
 
 CREATE TABLE Contestants (
     contestantName TEXT,
     sex CHAR(1) CHECK (sex IN ('M', 'F', 'N')), --M,F,N as in Male, Female, N/A
     country CHAR(3),
     sportName TEXT REFERENCES Sports(sportName), --of type https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
-    FOREIGN KEY (country, sport) REFERENCES NationalTeams
+    FOREIGN KEY (country, sportName) REFERENCES NationalTeams
 );
 
 CREATE TABLE Events ( --e.g. Men’s 30 km ski
@@ -49,40 +49,43 @@ CREATE TABLE Events ( --e.g. Men’s 30 km ski
     eventName TEXT
 );
 
-/*
 CREATE TABLE Competitions ( -- e.g. round 1, group 3
-    eventID SERIAL REFERENCES Events.eventID,
-    competitionID,
-    round,
-    group_,
-    arenaID,
-);*/
+    competitionID SERIAL PRIMARY KEY,
+    eventID SERIAL REFERENCES Events(eventID),
+    roundNumber INTEGER,
+    groupNumber INTEGER
+);
 
 CREATE TABLE Venues ( -- e.g. Globen, ice rink
-    name TEXT,
-    arena TEXT, --can be in multiple venues but not multiple arenas at the same time
-    PRIMARY KEY (name, arena)
+    arena TEXT,
+    venueName TEXT,
+    PRIMARY KEY (arena, venueName)
 );
 
 CREATE TABLE Schedules (
     datetime DATE,
-    venueName TEXT,
     arena TEXT,
-    eventID SERIAL REFERENCES Events(eventID), -- relation to event
-    FOREIGN KEY (venueName, arena) REFERENCES Venues(name, arena)
+    venueName TEXT,
+    competitionID SERIAL REFERENCES Competitions(competitionID),
+    FOREIGN KEY (arena, venueName) REFERENCES Venues(arena, venueName)
 );
 
-
 --Insert stuff here
-INSERT INTO Sports VALUES ('Slalom Alpine Ski', 'F');
-INSERT INTO Sports VALUES ('Bobsleigh', 'N');
-INSERT INTO NationalTeams VALUES ('FIN', 'Slalom Alpine Ski');
-INSERT INTO NationalTeams VALUES ('SWE', 'Bobsleigh');
-INSERT INTO Venues VALUES ('Friends Arena', 'Main Arena');
-INSERT INTO Venues VALUES ('Friends Arena', 'Secondary Arena');
-INSERT INTO Venues VALUES ('Lillehammer Olympic Bobsleigh and Luge Track', 'Bobsleigh Track');
-INSERT INTO Venues VALUES ('Hammarbybacken Bobsleigh Track', 'Bobsleigh Track');
-INSERT INTO Events VALUES (DEFAULT, 'Bobsleigh', 'Four-person');
-INSERT INTO Events VALUES (DEFAULT, 'Bobsleigh', 'Two-man');
-INSERT INTO Schedules VALUES ('2015-10-25', 'Friends Arena', 'Main Arena', 1);
 
+INSERT INTO Sports VALUES ('Slalom Alpine Ski', 'F');
+INSERT INTO NationalTeams VALUES ('FIN', 'Slalom Alpine Ski');
+INSERT INTO Venues VALUES ('Friends Arena', 'Main Venue');
+INSERT INTO Venues VALUES ('Friends Arena', 'Secondary Venue');
+INSERT INTO Events VALUES (DEFAULT, 'Slalom Alpine Ski', 'One-skii'); --event 1. Maybe
+INSERT INTO Competitions VALUES (DEFAULT, 1, 6, 7);
+INSERT INTO Schedules VALUES ('2015-10-25', 'Friends Arena', 'Main Venue', 1);
+
+
+INSERT INTO Sports VALUES ('Bobsleigh', 'N');
+INSERT INTO NationalTeams VALUES ('SWE', 'Bobsleigh');
+INSERT INTO Venues VALUES ('Lillehammer Olympic Bobsleigh and Luge Track', 'Bobsleigh Track Venue');
+INSERT INTO Venues VALUES ('Hammarbybacken Bobsleigh Track', 'Bobsleigh Track Venue');
+INSERT INTO Events VALUES (DEFAULT, 'Bobsleigh', 'Four-person'); --event 2. Maybe
+INSERT INTO Events VALUES (DEFAULT, 'Bobsleigh', 'Two-man');
+INSERT INTO Competitions VALUES (DEFAULT, 2, 6, 7);
+INSERT INTO Schedules VALUES ('2015-10-25', 'Hammarbybacken Bobsleigh Track', 'Bobsleigh Track Venue', 1);
