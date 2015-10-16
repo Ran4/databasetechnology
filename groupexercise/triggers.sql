@@ -18,7 +18,7 @@ FOR EACH ROW
     EXECUTE PROCEDURE prevent_double_booking_function();
     
 /*3. That a contestant can not compete at the same time in different competitions.*/
-/*
+
 DROP FUNCTION IF EXISTS prevent_compete_on_same_time_function() CASCADE;
 CREATE FUNCTION prevent_compete_on_same_time_function() RETURNS TRIGGER AS $pname$
 BEGIN
@@ -33,7 +33,11 @@ END;
     
 $pname$ LANGUAGE plpgsql;
 CREATE TRIGGER prevent_compete_on_same_time_trigger
-BEFORE INSERT ON  --Triggering condition
+BEFORE INSERT ON competesIn  --Triggering condition
 FOR EACH ROW
     EXECUTE PROCEDURE prevent_compete_on_same_time_function();
+
+/*
+Would it be okadd a trigger that when adding a new value into competition checks if there are any
+ contestants that would be competing in the same time, and thus reject the event insertion?
 */
