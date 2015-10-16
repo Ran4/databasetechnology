@@ -20,6 +20,27 @@ SELECT nationalTeams.country, nationalTeams.sportName, nationalTeams.sex
 --3. Where and when are the finals in the bobsleigh race being run?
 SELECT datetime, arena, venueName
 FROM Schedules NATURAL JOIN Events NATURAL JOIN Competitions
-WHERE Events.sportName = 'Bobsleigh' AND Competitions.roundName = 'final'
+WHERE Events.sportName = 'Bobsleigh' AND Competitions.roundName = 'final';
 
 --4. Who are the goal keepers for Russian’s men’s ice hockey team
+SELECT contestantName
+FROM Contestants
+WHERE country = 'RUS' AND position = 'Goalie' AND sportName = 'Ice Hockey' AND sex = 'M';
+
+--5. (own query) When, where (if scheduled) and in what is Anja Persson scheduled to compete?
+SELECT contestantName, sportName, roundName, datetime, venueName, arena
+--FROM Contestants NATURAL JOIN Schedules NATURAL JOIN Competitions NATURAL JOIN CompetesIn
+FROM Contestants NATURAL JOIN (Schedules FULL JOIN Competitions USING (competitionID)) NATURAL JOIN CompetesIn
+WHERE contestantName = 'Anja Persson';
+
+--6. (own query) Which countries has both a Men's and Women's team in a given sport?
+SELECT T1.country, T1.sportName
+FROM nationalTeams AS T1, nationalTeams AS T2
+WHERE T1.sex = 'M' AND T2.sex = 'F'
+    AND T1.country = T2.country
+    AND T1.sportName = T2.sportName AND T1.sportName = 'Ice Hockey';
+    
+--7 (own query) When are all the finals (scheduled or not?)
+SELECT sex, eventName, sportName, datetime, Arena, Venuename
+FROM (Schedules FULL JOIN Competitions USING (competitionID)) NATURAL JOIN Events
+WHERE Competitions.roundName = 'final';
