@@ -96,9 +96,10 @@ INSERT INTO Competitions VALUES (DEFAULT, 1, 'first competition', 7); --competit
 INSERT INTO Competitions VALUES (DEFAULT, 1, 'semi-final', 7); --competitionID 2. Maybe
 INSERT INTO Competitions VALUES (DEFAULT, 1, 'final', 7); --competitionID 3. Maybe
 INSERT INTO CompetesIn VALUES ('Anja Persson', 1);
+INSERT INTO CompetesIn VALUES ('Anja Persson', 2);
 INSERT INTO CompetesIn VALUES ('Tanja Poutiainen', 1);
 INSERT INTO Schedules VALUES ('2015-10-25', 'Friends Arena', 'Main Venue', 1);
-INSERT INTO Schedules VALUES ('2015-10-25', 'Friends Arena', 'Main Venue', 1);
+INSERT INTO Schedules VALUES ('2015-10-25', 'Friends Arena', 'Main Venue', 2);
 
 
 INSERT INTO Sports VALUES ('Bobsleigh');
@@ -121,5 +122,4 @@ Consistency:
 arena as it includes competitions locations within the arena.),
 
 3. That a contestant can not compete at the same time in different competitions.
-
 */
