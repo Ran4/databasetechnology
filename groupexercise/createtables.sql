@@ -56,7 +56,7 @@ CREATE TABLE Events ( --e.g. Men’s 30 km ski
 CREATE TABLE Competitions ( -- e.g. round 1, group 3
     competitionID SERIAL PRIMARY KEY,
     eventID SERIAL REFERENCES Events(eventID),
-    roundNumber INTEGER,
+    roundName TEXT,
     groupNumber INTEGER
 );
 
@@ -84,11 +84,15 @@ INSERT INTO NationalTeams VALUES ('FIN', 'Slalom Alpine Ski', 'F');
 INSERT INTO NationalTeams VALUES ('SWE', 'Slalom Alpine Ski', 'F');
 INSERT INTO NationalTeams VALUES ('RUS', 'Slalom Alpine Ski', 'M');
 INSERT INTO Contestants VALUES ('Anja Persson', 'F', 'SWE', 'Slalom Alpine Ski');
+INSERT INTO Contestants VALUES ('Tanja Poutiainen', 'F', 'FIN', 'Slalom Alpine Ski');
 INSERT INTO Venues VALUES ('Friends Arena', 'Main Venue');
 INSERT INTO Venues VALUES ('Friends Arena', 'Secondary Venue');
 INSERT INTO Events VALUES (DEFAULT, 'Slalom Alpine Ski', 'One-skii', 'F'); --event 1. Maybe
-INSERT INTO Competitions VALUES (DEFAULT, 1, 6, 7); --competitionID 1. Maybe
+INSERT INTO Competitions VALUES (DEFAULT, 1, 'first round', 7); --competitionID 1. Maybe
+INSERT INTO Competitions VALUES (DEFAULT, 1, 'semi-final', 7); --competitionID 2. Maybe
+INSERT INTO Competitions VALUES (DEFAULT, 1, 'final', 7); --competitionID 3. Maybe
 INSERT INTO CompetesIn VALUES ('Anja Persson', 1);
+INSERT INTO CompetesIn VALUES ('Tanja Poutiainen', 1);
 INSERT INTO Schedules VALUES ('2015-10-25', 'Friends Arena', 'Main Venue', 1);
 
 
@@ -98,6 +102,6 @@ INSERT INTO NationalTeams VALUES ('CHK', 'Bobsleigh', 'N');
 INSERT INTO Venues VALUES ('Lillehammer Olympic Bobsleigh and Luge Track', 'Bobsleigh Track Venue');
 INSERT INTO Venues VALUES ('Hammarbybacken Bobsleigh Track', 'Bobsleigh Track Venue');
 INSERT INTO Events VALUES (DEFAULT, 'Bobsleigh', 'Four-person', 'N'); --event 2. Maybe
-INSERT INTO Events VALUES (DEFAULT, 'Bobsleigh', 'Two-man', 'M');
-INSERT INTO Competitions VALUES (DEFAULT, 2, 6, 7);
-INSERT INTO Schedules VALUES ('2015-10-25', 'Hammarbybacken Bobsleigh Track', 'Bobsleigh Track Venue', 1);
+INSERT INTO Events VALUES (DEFAULT, 'Bobsleigh', 'Two-man', 'M'); --event 3. Maybe
+INSERT INTO Competitions VALUES (DEFAULT, 2, 'final', 7); --competitionID 4. Maybe
+INSERT INTO Schedules VALUES ('2015-10-25', 'Hammarbybacken Bobsleigh Track', 'Bobsleigh Track Venue', 4);
