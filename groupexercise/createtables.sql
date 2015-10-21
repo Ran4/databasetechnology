@@ -43,8 +43,6 @@ CREATE TABLE Contestants (
     sportName TEXT REFERENCES Sports(sportName), --of type https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
     position TEXT,
     FOREIGN KEY (country, sportName, sex) REFERENCES NationalTeams
-    
-    --todo: sportName shouldn't be PRIMARY KEY... somethingsomething
 );
 
 CREATE TABLE Events ( --e.g. Men’s 30 km ski

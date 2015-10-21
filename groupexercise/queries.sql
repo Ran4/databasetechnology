@@ -46,5 +46,8 @@ FROM (Schedules FULL JOIN Competitions USING (competitionID)) NATURAL JOIN Event
 WHERE Competitions.roundName = 'final';
 
 
---8 (own query) Which arena is the most popular?
-
+--8 (own query) Show all hockey players sorted by their names, but first grouped by their country
+SELECT *
+FROM Contestants
+WHERE sportName = 'Ice Hockey'
+ORDER BY country, contestantName
