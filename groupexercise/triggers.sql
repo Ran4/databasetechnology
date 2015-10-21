@@ -1,3 +1,15 @@
+/*
+Consistency:
+1. Contestants must belong to one and only one team,
+   Each Contestants name must be unique, so this requirement is more than enforced.
+
+2. No two competitions can take place at the same venue at the same time (A venue is not the same as
+arena as it includes competitions locations within the arena.),
+
+3. That a contestant can not compete at the same time in different competitions.
+*/
+
+
 /*2. No two competitions can take place at the same venue at the same time (A venue is not the same as
 arena as it includes competitions locations within the arena.)*/
 DROP FUNCTION IF EXISTS prevent_double_booking_function() CASCADE;
@@ -20,7 +32,6 @@ FOR EACH ROW
 /*3. That a contestant can not compete at the same time in different competitions.
 Would it be ok to add a trigger that when adding a new value into competition
 checks if there are any contestants that would be competing in the same time, and thus reject the event insertion?
-YES!
 */
 DROP FUNCTION IF EXISTS prevent_compete_on_same_time_function() CASCADE;
 CREATE FUNCTION prevent_compete_on_same_time_function() RETURNS TRIGGER AS $pname$

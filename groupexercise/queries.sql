@@ -44,3 +44,7 @@ WHERE T1.sex = 'M' AND T2.sex = 'F'
 SELECT sex, eventName, sportName, datetime, Arena, Venuename
 FROM (Schedules FULL JOIN Competitions USING (competitionID)) NATURAL JOIN Events
 WHERE Competitions.roundName = 'final';
+
+
+--8 (own query) Which arena is the most popular?
+
