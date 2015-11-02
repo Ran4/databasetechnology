@@ -1,0 +1,6 @@
+<Bikes>
+    <Bike id=”1” Bikeroom = “1” ><Model>Cresent</Model> <Owner>George</Owner></Bike>
+    <Bike id=”2”><Model>DBS</Model> <Owner>Karin</Owner></Bike>
+    <Bike id=”3”><Model>Monark</Model> <Owner>George</Owner> <Tire type=”winter”/> </Bike>
+<Bikeroom Roomid = ”1”><Address>Cycle Lane 3</Address></Bikeroom>
+<Bikeroom Roomid = ”2” bikes = “2”, “3”><Address>Cycle Lane 5</Address></Bikeroom> </Bikes>
