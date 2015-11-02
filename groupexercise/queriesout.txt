@@ -1,0 +1,53 @@
+     sportname     | eventname |     roundname     | groupnumber 
+-------------------+-----------+-------------------+-------------
+ Slalom Alpine Ski | One-skii  | first competition |           7
+(1 row)
+
+ country |     sportname     | sex 
+---------+-------------------+-----
+ SWE     | Slalom Alpine Ski | F
+ SWE     | Slalom Alpine Ski | F
+ FIN     | Slalom Alpine Ski | F
+(3 rows)
+
+  datetime  |             arena              |       venuename       
+------------+--------------------------------+-----------------------
+ 2015-10-25 | Hammarbybacken Bobsleigh Track | Bobsleigh Track Venue
+(1 row)
+
+ contestantname 
+----------------
+ Evgeni Nabokov
+(1 row)
+
+ contestantname |     sportname     |     roundname     |  datetime  | venuename  |     arena     
+----------------+-------------------+-------------------+------------+------------+---------------
+ Anja Persson   | Slalom Alpine Ski | first competition | 2015-10-25 | Main Venue | Friends Arena
+ Anja Persson   | Slalom Alpine Ski | semi-final        |            |            | 
+(2 rows)
+
+ country | sportname  
+---------+------------
+ RUS     | Ice Hockey
+(1 row)
+
+ sex |  eventname  |     sportname     |  datetime  |             arena              |       venuename       
+-----+-------------+-------------------+------------+--------------------------------+-----------------------
+ N   | Four-person | Bobsleigh         | 2015-10-25 | Hammarbybacken Bobsleigh Track | Bobsleigh Track Venue
+ F   | One-skii    | Slalom Alpine Ski |            |                                | 
+(2 rows)
+
+   contestantname   | sex | country | sportname  |  position  
+--------------------+-----+---------+------------+------------
+ Bobby Hull         | M   | CAN     | Ice Hockey | 
+ Janne Juvonen      | M   | FIN     | Ice Hockey | 
+ Alexander Ovechkin | M   | RUS     | Ice Hockey | 
+ Evgeni Malkin      | M   | RUS     | Ice Hockey | Left Wing
+ Evgeni Nabokov     | M   | RUS     | Ice Hockey | Goalie
+ Ilya Bryzgalov     | M   | RUS     | Ice Hockey | Right wing
+ Pavel Datsyuk      | M   | RUS     | Ice Hockey | Defensemen
+ Viacheslav Fetisov | M   | RUS     | Ice Hockey | 
+ Gunde Andersson    | M   | SWE     | Ice Hockey | Goalie
+ Zach Parise        | M   | USA     | Ice Hockey | 
+(10 rows)
+
