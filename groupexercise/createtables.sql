@@ -39,7 +39,7 @@ CREATE TABLE NationalTeams (
 CREATE TABLE Contestants (
     contestantName TEXT PRIMARY KEY,
     sex CHAR(1) CHECK (sex IN ('M', 'F', 'N')), --M,F,N as in Male, Female, N/A
-    country CHAR(3),
+    country CHAR(3) NOT NULL,
     sportName TEXT REFERENCES Sports(sportName), --of type https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
     position TEXT,
     FOREIGN KEY (country, sportName, sex) REFERENCES NationalTeams
